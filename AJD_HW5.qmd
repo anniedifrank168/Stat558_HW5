@@ -251,7 +251,8 @@ table(subsetted_math$famsizeF, subsetted_math$addressF)
 #Two-way contigency table 
 
 comb_data3 %>% group_by(famsizeF, addressF) %>% summarize(count = n()) %>% pivot_wider(names_from =
-                                                                                         addressF, values_from = count) #same output as the two-way table from earlier!
+                                                                                         addressF, values_from = count) 
+#same output as the two-way table from earlier!
 
 #______________________________________________________
 
@@ -301,7 +302,7 @@ comb_data3 %>% summarize(
   stddev = sd(G1.math)
 ) -> G1_math
 
-NumSums <- bind_rows(age, absences.math, G1.math) %>% as.data.frame()
+NumSums <- bind_rows(age, absences_math, G1_math) %>% as.data.frame()
 rownames(NumSums) = c("age", "absences_math", "G1_math")
 
 #Repeating while subsetting data to just females
@@ -322,7 +323,7 @@ comb_data3 %>% filter(sex == "F") %>% summarize(
   stddev = sd(G1.math)
 ) -> Female_G1_math
 NumSumsF <-
-  bind_rows(Female_age, Female_absences.math, Female_G1.math) %>% as.data.frame()
+  bind_rows(Female_age, Female_absences_math, Female_G1_math) %>% as.data.frame()
 rownames(NumSumsF) = c("Fem_age", "Fem_absences_math", "Fem_G1_math")
 
 NumSums <- bind_rows(NumSums, NumSumsF)
@@ -370,7 +371,7 @@ correlation_matrix
 #Noticeable, and probably expected, strong corrrelations are between the 3 G's. There's no strong correlations with age, absences between math and portuguese have a little correlation which makes sense if it's the same student missing both classes. 
 ```
 
-Here we will do visuals:
+Next we will do visuals:
 
 -    Create a histogram, kernel density plot, and boxplot for two of the numeric variables across one of the categorical variables
 
